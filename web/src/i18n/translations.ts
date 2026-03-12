@@ -361,6 +361,15 @@ export const translations = {
     fetchingBalance: 'Fetching balance...',
     editTrader: 'Save Changes',
     createTraderButton: 'Create Trader',
+    // Webhook Notification
+    webhookConfig: 'Webhook Notification',
+    webhookEnabled: 'Enable Webhook',
+    webhookEnabledDesc: 'Push decision results and account P&L to your webhook URL after each trading cycle',
+    webhookURL: 'Webhook URL',
+    webhookURLPlaceholder: 'https://your-server.com/webhook',
+    webhookSecret: 'Signing Secret (Optional)',
+    webhookSecretPlaceholder: 'Leave empty to skip signature verification',
+    webhookSecretHint: 'If set, an HMAC-SHA256 signature will be sent via X-Nofx-Signature header',
 
     // AI Model Configuration
     officialAPI: 'Official API',
@@ -1930,6 +1939,15 @@ export const translations = {
     fetchingBalance: '正在获取余额…',
     editTrader: '保存修改',
     createTraderButton: '创建交易员',
+    // Webhook 通知
+    webhookConfig: 'Webhook 通知',
+    webhookEnabled: '启用 Webhook',
+    webhookEnabledDesc: '每轮交易决策结束后，将决策结果和账户盈亏推送到您的 Webhook 地址',
+    webhookURL: 'Webhook 地址',
+    webhookURLPlaceholder: 'https://your-server.com/webhook',
+    webhookSecret: '签名密钥（可选）',
+    webhookSecretPlaceholder: '留空则不进行签名验证',
+    webhookSecretHint: '设置后将通过 X-Nofx-Signature 请求头发送 HMAC-SHA256 签名',
 
     // AI Model Configuration
     officialAPI: '官方API',
@@ -3439,6 +3457,15 @@ export const translations = {
     fetchingBalance: 'Mengambil saldo...',
     editTrader: 'Simpan Perubahan',
     createTraderButton: 'Buat Trader',
+    // Webhook Notifikasi
+    webhookConfig: 'Notifikasi Webhook',
+    webhookEnabled: 'Aktifkan Webhook',
+    webhookEnabledDesc: 'Kirim hasil keputusan dan P&L akun ke URL webhook setelah setiap siklus trading',
+    webhookURL: 'URL Webhook',
+    webhookURLPlaceholder: 'https://your-server.com/webhook',
+    webhookSecret: 'Secret Signing (Opsional)',
+    webhookSecretPlaceholder: 'Kosongkan untuk melewati verifikasi tanda tangan',
+    webhookSecretHint: 'Jika diset, tanda tangan HMAC-SHA256 akan dikirim via header X-Nofx-Signature',
 
     // AI Model Configuration
     officialAPI: 'API Resmi',

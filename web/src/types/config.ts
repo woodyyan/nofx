@@ -75,6 +75,10 @@ export interface CreateTraderRequest {
   system_prompt_template?: string
   use_ai500?: boolean
   use_oi_top?: boolean
+  // Webhook 通知配置
+  webhook_url?: string
+  webhook_secret?: string
+  webhook_enabled?: boolean
 }
 
 export interface UpdateModelConfigRequest {

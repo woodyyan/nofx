@@ -3,7 +3,7 @@ import type { AIModel, Exchange, CreateTraderRequest, Strategy } from '../../typ
 import { useLanguage } from '../../contexts/LanguageContext'
 import { t } from '../../i18n/translations'
 import { toast } from 'sonner'
-import { Pencil, Plus, X as IconX, Sparkles, ExternalLink, UserPlus } from 'lucide-react'
+import { Pencil, Plus, X as IconX, Sparkles, ExternalLink, UserPlus, Webhook } from 'lucide-react'
 import { httpClient } from '../../lib/httpClient'
 
 // 提取下划线后面的名称部分
@@ -35,6 +35,10 @@ interface FormState {
   show_in_competition: boolean
   scan_interval_minutes: number
   initial_balance?: number
+  // Webhook 配置
+  webhook_url: string
+  webhook_secret: string
+  webhook_enabled: boolean
 }
 
 interface TraderConfigModalProps {
@@ -65,6 +69,9 @@ export function TraderConfigModal({
     is_cross_margin: true,
     show_in_competition: true,
     scan_interval_minutes: 3,
+    webhook_url: '',
+    webhook_secret: '',
+    webhook_enabled: false,
   })
   const [isSaving, setIsSaving] = useState(false)
   const [strategies, setStrategies] = useState<Strategy[]>([])
@@ -103,6 +110,9 @@ export function TraderConfigModal({
       setFormData({
         ...traderData,
         strategy_id: traderData.strategy_id || '',
+        webhook_url: traderData.webhook_url || '',
+        webhook_secret: traderData.webhook_secret || '',
+        webhook_enabled: traderData.webhook_enabled ?? false,
       })
     } else if (!isEditMode) {
       setFormData({
@@ -113,6 +123,9 @@ export function TraderConfigModal({
         is_cross_margin: true,
         show_in_competition: true,
         scan_interval_minutes: 3,
+        webhook_url: '',
+        webhook_secret: '',
+        webhook_enabled: false,
       })
     }
   }, [traderData, isEditMode, availableModels, availableExchanges])
@@ -167,6 +180,9 @@ export function TraderConfigModal({
         is_cross_margin: formData.is_cross_margin,
         show_in_competition: formData.show_in_competition,
         scan_interval_minutes: formData.scan_interval_minutes,
+        webhook_url: formData.webhook_url,
+        webhook_secret: formData.webhook_secret,
+        webhook_enabled: formData.webhook_enabled,
       }
 
       // 只在编辑模式时包含initial_balance
@@ -537,6 +553,76 @@ export function TraderConfigModal({
                   <span className="text-sm text-[#848E9C]">
                     {t('autoFetchBalanceInfo', language)}
                   </span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Webhook Notification */}
+          <div className="bg-[#0B0E11] border border-[#2B3139] rounded-lg p-5">
+            <h3 className="text-lg font-semibold text-[#EAECEF] mb-5 flex items-center gap-2">
+              <span className="text-[#F0B90B]">4</span>
+              {t('webhookConfig', language)}
+              <Webhook className="w-4 h-4 text-[#F0B90B]" />
+            </h3>
+            <div className="space-y-4">
+              {/* Enable toggle */}
+              <div className="flex items-center justify-between p-3 bg-[#1E2329] border border-[#2B3139] rounded-lg">
+                <div>
+                  <p className="text-sm font-medium text-[#EAECEF]">
+                    {t('webhookEnabled', language)}
+                  </p>
+                  <p className="text-xs text-[#848E9C] mt-0.5">
+                    {t('webhookEnabledDesc', language)}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={formData.webhook_enabled}
+                  onClick={() => handleInputChange('webhook_enabled', !formData.webhook_enabled)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${
+                    formData.webhook_enabled ? 'bg-[#F0B90B]' : 'bg-[#2B3139]'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      formData.webhook_enabled ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+              </div>
+
+              {/* URL and Secret fields — only visible when enabled */}
+              {formData.webhook_enabled && (
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-sm text-[#EAECEF] block mb-2">
+                      {t('webhookURL', language)}
+                    </label>
+                    <input
+                      type="url"
+                      value={formData.webhook_url}
+                      onChange={(e) => handleInputChange('webhook_url', e.target.value)}
+                      className="w-full px-3 py-2 bg-[#0B0E11] border border-[#2B3139] rounded text-[#EAECEF] focus:border-[#F0B90B] focus:outline-none font-mono text-sm"
+                      placeholder={t('webhookURLPlaceholder', language)}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm text-[#EAECEF] block mb-2">
+                      {t('webhookSecret', language)}
+                    </label>
+                    <input
+                      type="password"
+                      value={formData.webhook_secret}
+                      onChange={(e) => handleInputChange('webhook_secret', e.target.value)}
+                      className="w-full px-3 py-2 bg-[#0B0E11] border border-[#2B3139] rounded text-[#EAECEF] focus:border-[#F0B90B] focus:outline-none font-mono text-sm"
+                      placeholder={t('webhookSecretPlaceholder', language)}
+                    />
+                    <p className="text-xs text-[#848E9C] mt-1">
+                      {t('webhookSecretHint', language)}
+                    </p>
+                  </div>
                 </div>
               )}
             </div>
