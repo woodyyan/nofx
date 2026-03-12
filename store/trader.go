@@ -30,8 +30,12 @@ type Trader struct {
 	IsRunning           bool      `gorm:"column:is_running;default:false" json:"is_running"`
 	IsCrossMargin       bool      `gorm:"column:is_cross_margin;default:true" json:"is_cross_margin"`
 	ShowInCompetition   bool      `gorm:"column:show_in_competition;default:true" json:"show_in_competition"`
-	CreatedAt           time.Time `gorm:"column:created_at;autoCreateTime" json:"created_at"`
-	UpdatedAt           time.Time `gorm:"column:updated_at;autoUpdateTime" json:"updated_at"`
+	// Webhook notification configuration
+	WebhookURL     string `gorm:"column:webhook_url;default:''" json:"webhook_url"`
+	WebhookSecret  string `gorm:"column:webhook_secret;default:''" json:"webhook_secret"`
+	WebhookEnabled bool   `gorm:"column:webhook_enabled;default:false" json:"webhook_enabled"`
+	CreatedAt      time.Time `gorm:"column:created_at;autoCreateTime" json:"created_at"`
+	UpdatedAt      time.Time `gorm:"column:updated_at;autoUpdateTime" json:"updated_at"`
 
 	// Following fields are deprecated, kept for backward compatibility, new traders should use StrategyID
 	BTCETHLeverage       int    `gorm:"column:btc_eth_leverage;default:5" json:"btc_eth_leverage,omitempty"`
@@ -110,12 +114,15 @@ func (s *TraderStore) Update(trader *Trader) error {
 		trader.ID, trader.Name, trader.AIModelID, trader.StrategyID)
 
 	updates := map[string]interface{}{
-		"name":           trader.Name,
-		"ai_model_id":    trader.AIModelID,
-		"exchange_id":    trader.ExchangeID,
-		"strategy_id":    trader.StrategyID,
-		"is_cross_margin": trader.IsCrossMargin,
+		"name":                trader.Name,
+		"ai_model_id":         trader.AIModelID,
+		"exchange_id":         trader.ExchangeID,
+		"strategy_id":         trader.StrategyID,
+		"is_cross_margin":     trader.IsCrossMargin,
 		"show_in_competition": trader.ShowInCompetition,
+		"webhook_url":         trader.WebhookURL,
+		"webhook_secret":      trader.WebhookSecret,
+		"webhook_enabled":     trader.WebhookEnabled,
 	}
 
 	// Only update these if > 0
