@@ -114,7 +114,7 @@ chmod +x ./start.sh
 > **💡 Оновлення виходять часто.** Запускайте цю команду щодня для отримання останніх функцій та виправлень:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 Відкрийте **http://127.0.0.1:3000**. Готово.
@@ -204,7 +204,7 @@ x402 процес:
 ### Linux / macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 ### Railway (Хмара)

@@ -114,7 +114,7 @@ Truy cập giao diện Web: **http://localhost:3000**
 > **💡 Cập nhật thường xuyên.** Chạy lệnh này hàng ngày để nhận các tính năng và bản sửa lỗi mới nhất:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 Mở **http://127.0.0.1:3000**. Xong.
@@ -203,7 +203,7 @@ Crypto · Cổ phiếu Mỹ · Forex · Kim loại
 ### Linux / macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 ### Railway (Cloud)

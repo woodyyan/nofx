@@ -114,7 +114,7 @@ chmod +x ./start.sh
 > **💡 Обновления выходят часто.** Запускайте эту команду ежедневно для получения последних функций и исправлений:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 Откройте **http://127.0.0.1:3000**. Готово.
@@ -204,7 +204,7 @@ x402 процесс:
 ### Linux / macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 ### Railway (Облако)

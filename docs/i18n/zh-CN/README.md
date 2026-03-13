@@ -41,7 +41,7 @@ NOFX 是一个开源的**自主式** AI 交易助手。与需要手动配置模�
 核心差异：**内置 [x402](https://x402.org) 微支付协议**。无需 API Key，充值 USDC 钱包即可按需付费。钱包就是你的身份。
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 打开 **http://127.0.0.1:3000**，完成。
@@ -130,7 +130,7 @@ x402 流程：
 ### Linux / macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 ### Railway (云部署)
@@ -169,7 +169,7 @@ cd web && npm install && npm run dev  # 前端 (新终端)
 ### 更新
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 此命令会拉取最新官方镜像并自动重启服务。
@@ -299,7 +299,7 @@ npm run dev
 
 2. **在 WSL2 终端运行**
    ```bash
-   curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+   curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
    ```
 
 ---
@@ -312,7 +312,7 @@ npm run dev
 
 ```bash
 # 部署到你的服务器
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 通过 `http://你的服务器IP:3000` 访问 - 立即可用。

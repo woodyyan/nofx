@@ -114,7 +114,7 @@ chmod +x ./start.sh
 > **💡 업데이트가 빈번합니다.** 최신 기능과 수정 사항을 받으려면 매일 이 명령을 실행하세요:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 **http://127.0.0.1:3000** 을 열면 완료.
@@ -204,7 +204,7 @@ x402 플로우:
 ### Linux / macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 ### Railway (클라우드)
@@ -272,7 +272,7 @@ cd web && npm run dev
 
 ```bash
 # 서버에 배포
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 `http://YOUR_SERVER_IP:3000`을 통해 액세스 - 즉시 작동합니다.

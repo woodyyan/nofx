@@ -39,7 +39,7 @@ NOFX is an open-source **autonomous** AI trading assistant. Unlike traditional A
 What makes it different: **built-in [x402](https://x402.org) micropayments**. No API keys. Fund a USDC wallet and pay per request. Your wallet is your identity.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 Open **http://127.0.0.1:3000**. Done.
@@ -172,7 +172,7 @@ Crypto · US Stocks · Forex · Metals
 ### Linux / macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 ### Railway (Cloud)
@@ -211,7 +211,7 @@ cd web && npm install && npm run dev  # frontend (new terminal)
 ### Update
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 ---
@@ -341,7 +341,7 @@ Access Web Interface: **http://127.0.0.1:3000**
 
 2. **Run from WSL2 terminal**
    ```bash
-   curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+   curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
    ```
 
 ---
@@ -355,7 +355,7 @@ By default, transport encryption is **disabled**, allowing you to access NOFX vi
 **HTTP (quick):**
 ```bash
 # Deploy to your server
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 **HTTPS (Cloudflare):**

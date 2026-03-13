@@ -114,7 +114,7 @@ Web インターフェースにアクセス: **http://localhost:3000**
 > **💡 更新は頻繁です。** 最新の機能と修正を取得するために、毎日このコマンドを実行してください：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 **http://127.0.0.1:3000** を開く。完了。
@@ -204,7 +204,7 @@ x402 フロー：
 ### Linux / macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 ### Railway (クラウド)
@@ -272,7 +272,7 @@ cd web && npm run dev
 
 ```bash
 # サーバーにデプロイ
-curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ```
 
 `http://YOUR_SERVER_IP:3000` 経由でアクセス - すぐに動作します。
