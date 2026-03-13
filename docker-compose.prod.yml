@@ -2,15 +2,15 @@
 # 用户部署专用 - 使用官方预构建镜像
 #
 # 一键部署命令:
-# curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bash
+# curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 #
 # 或手动部署:
-# curl -O https://raw.githubusercontent.com/NoFxAiOS/nofx/main/docker-compose.prod.yml
+# curl -O https://raw.githubusercontent.com/woodyyan/nofx/dev/docker-compose.prod.yml
 # docker compose -f docker-compose.prod.yml up -d
 
 services:
   nofx:
-    image: ghcr.io/nofxaios/nofx/nofx-backend:latest
+    image: ghcr.io/woodyyan/nofx/nofx-backend:dev
     container_name: nofx-trading
     restart: unless-stopped
     stop_grace_period: 30s
@@ -35,7 +35,7 @@ services:
       start_period: 60s
 
   nofx-frontend:
-    image: ghcr.io/nofxaios/nofx/nofx-frontend:latest
+    image: ghcr.io/woodyyan/nofx/nofx-frontend:dev
     container_name: nofx-frontend
     restart: unless-stopped
     ports:
