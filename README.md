@@ -6,9 +6,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/NoFxAiOS/nofx/stargazers"><img src="https://img.shields.io/github/stars/NoFxAiOS/nofx?style=for-the-badge" alt="Stars"></a>
-  <a href="https://github.com/NoFxAiOS/nofx/releases"><img src="https://img.shields.io/github/v/release/NoFxAiOS/nofx?style=for-the-badge" alt="Release"></a>
-  <a href="https://github.com/NoFxAiOS/nofx/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-blue.svg?style=for-the-badge" alt="License"></a>
+  <a href="https://github.com/woodyyan/nofx/stargazers"><img src="https://img.shields.io/github/stars/woodyyan/nofx?style=for-the-badge" alt="Stars"></a>
+  <a href="https://github.com/woodyyan/nofx/releases"><img src="https://img.shields.io/github/v/release/woodyyan/nofx?style=for-the-badge" alt="Release"></a>
+  <a href="https://github.com/woodyyan/nofx/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-blue.svg?style=for-the-badge" alt="License"></a>
   <a href="https://t.me/nofx_dev_community"><img src="https://img.shields.io/badge/Telegram-Community-blue?style=for-the-badge&logo=telegram" alt="Telegram"></a>
 </p>
 
@@ -39,7 +39,7 @@ NOFX is an open-source **autonomous** AI trading assistant. Unlike traditional A
 What makes it different: **built-in [x402](https://x402.org) micropayments**. No API keys. Fund a USDC wallet and pay per request. Your wallet is your identity.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
 ```
 
 Open **http://127.0.0.1:3000**. Done.
@@ -172,7 +172,7 @@ Crypto · US Stocks · Forex · Metals
 ### Linux / macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
 ```
 
 ### Railway (Cloud)
@@ -182,7 +182,8 @@ curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bas
 ### Docker
 
 ```bash
-curl -O https://raw.githubusercontent.com/NoFxAiOS/nofx/main/docker-compose.prod.yml
+# Download and start
+curl -O https://raw.githubusercontent.com/woodyyan/nofx/main/docker-compose.prod.yml
 docker compose -f docker-compose.prod.yml up -d
 ```
 
@@ -191,7 +192,7 @@ docker compose -f docker-compose.prod.yml up -d
 Install [Docker Desktop](https://www.docker.com/products/docker-desktop/), then:
 
 ```powershell
-curl -o docker-compose.prod.yml https://raw.githubusercontent.com/NoFxAiOS/nofx/main/docker-compose.prod.yml
+curl -o docker-compose.prod.yml https://raw.githubusercontent.com/woodyyan/nofx/main/docker-compose.prod.yml
 docker compose -f docker-compose.prod.yml up -d
 ```
 
@@ -202,7 +203,7 @@ docker compose -f docker-compose.prod.yml up -d
 # macOS: brew install ta-lib
 # Ubuntu: sudo apt-get install libta-lib0-dev
 
-git clone https://github.com/NoFxAiOS/nofx.git && cd nofx
+git clone https://github.com/woodyyan/nofx.git && cd nofx
 go build -o nofx && ./nofx          # backend
 cd web && npm install && npm run dev  # frontend (new terminal)
 ```
@@ -210,7 +211,7 @@ cd web && npm install && npm run dev  # frontend (new terminal)
 ### Update
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
 ```
 
 ---
@@ -223,16 +224,138 @@ curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bas
 4. **Trader** — Combine AI + Exchange + Strategy
 5. **Trade** — Launch from the dashboard
 
-Everything through the web UI at **http://127.0.0.1:3000**.
+- **Go 1.21+**
+- **Node.js 18+**
+- **TA-Lib** (technical indicator library)
+
+```bash
+# Install TA-Lib
+# macOS
+brew install ta-lib
+
+# Ubuntu/Debian
+sudo apt-get install libta-lib0-dev
+```
+
+#### Installation Steps
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/woodyyan/nofx.git
+cd nofx
+
+# 2. Install backend dependencies
+go mod download
+
+# 3. Install frontend dependencies
+cd web
+npm install
+cd ..
+
+# 4. Build and start backend
+go build -o nofx
+./nofx
+
+# 5. Start frontend (new terminal)
+cd web
+npm run dev
+```
+
+Access Web Interface: **http://127.0.0.1:3000**
 
 ---
 
-## Deploy to Server
+## Windows Installation
+
+### Method 1: Docker Desktop (Recommended)
+
+1. **Install Docker Desktop**
+   - Download from [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/)
+   - Run the installer and restart your computer
+   - Start Docker Desktop and wait for it to be ready
+
+2. **Run NOFX**
+   ```powershell
+   # Open PowerShell and run:
+   curl -o docker-compose.prod.yml https://raw.githubusercontent.com/woodyyan/nofx/main/docker-compose.prod.yml
+   docker compose -f docker-compose.prod.yml up -d
+   ```
+
+3. **Access**: Open **http://127.0.0.1:3000** in your browser
+
+### Method 2: WSL2 (For Development)
+
+1. **Install WSL2**
+   ```powershell
+   # Open PowerShell as Administrator
+   wsl --install
+   ```
+   Restart your computer after installation.
+
+2. **Install Ubuntu from Microsoft Store**
+   - Open Microsoft Store
+   - Search "Ubuntu 22.04" and install
+   - Launch Ubuntu and set up username/password
+
+3. **Install Dependencies in WSL2**
+   ```bash
+   # Update system
+   sudo apt update && sudo apt upgrade -y
+
+   # Install Go
+   wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
+   sudo tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz
+   echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+   source ~/.bashrc
+
+   # Install Node.js
+   curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+   sudo apt-get install -y nodejs
+
+   # Install TA-Lib
+   sudo apt-get install -y libta-lib0-dev
+
+   # Install Git
+   sudo apt-get install -y git
+   ```
+
+4. **Clone and Run NOFX**
+   ```bash
+   git clone https://github.com/woodyyan/nofx.git
+   cd nofx
+
+   # Build and run backend
+   go build -o nofx && ./nofx
+
+   # In another terminal, run frontend
+   cd web && npm install && npm run dev
+   ```
+
+5. **Access**: Open **http://127.0.0.1:3000** in Windows browser
+
+### Method 3: Docker in WSL2 (Best of Both Worlds)
+
+1. **Install Docker Desktop with WSL2 backend**
+   - During Docker Desktop installation, enable "Use WSL 2 based engine"
+   - In Docker Desktop Settings → Resources → WSL Integration, enable your Linux distro
+
+2. **Run from WSL2 terminal**
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
+   ```
+
+---
+
+## Server Deployment
+
+### Quick Deploy (HTTP via IP)
+
+By default, transport encryption is **disabled**, allowing you to access NOFX via IP address without HTTPS:
 
 **HTTP (quick):**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bash
-# Access via http://YOUR_IP:3000
+# Deploy to your server
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
 ```
 
 **HTTPS (Cloudflare):**
@@ -291,7 +414,7 @@ See [Contributing Guide](CONTRIBUTING.md) · [Code of Conduct](CODE_OF_CONDUCT.m
 
 All contributions are tracked. When NOFX generates revenue, contributors receive airdrops.
 
-**[Pinned Issues](https://github.com/NoFxAiOS/nofx/issues) get the highest rewards.**
+**[Pinned Issues](https://github.com/woodyyan/nofx/issues) get the highest rewards.**
 
 | Contribution | Weight |
 |:-------------|:------:|
@@ -314,7 +437,23 @@ All contributions are tracked. When NOFX generates revenue, contributors receive
 | Telegram | [nofx_dev_community](https://t.me/nofx_dev_community) |
 | Twitter | [@nofx_official](https://x.com/nofx_official) |
 
-> **Risk Warning**: AI auto-trading carries significant risks. Recommended for learning/research or small amounts only.
+**PRs that resolve [Pinned Issues](https://github.com/woodyyan/nofx/issues) receive the HIGHEST rewards!**
+
+| Contribution Type | Weight |
+|------------------|:------:|
+| **Pinned Issue PRs** | ⭐⭐⭐⭐⭐⭐ |
+| **Code Commits** (Merged PRs) | ⭐⭐⭐⭐⭐ |
+| **Bug Fixes** | ⭐⭐⭐⭐ |
+| **Feature Suggestions** | ⭐⭐⭐ |
+| **Bug Reports** | ⭐⭐ |
+| **Documentation** | ⭐⭐ |
+
+---
+
+## Contact
+
+- **GitHub Issues**: [Submit an Issue](https://github.com/woodyyan/nofx/issues)
+- **Developer Community**: [Telegram Group](https://t.me/nofx_dev_community)
 
 ---
 
@@ -332,10 +471,10 @@ All contributions are tracked. When NOFX generates revenue, contributors receive
 <a href="https://github.com/leiwuhen1715"><img src="https://github.com/leiwuhen1715.png" width="50" height="50" style="border-radius:50%"/></a>
 <a href="https://github.com/SHAOXIA1991"><img src="https://github.com/SHAOXIA1991.png" width="50" height="50" style="border-radius:50%"/></a>
 
-[Become a sponsor](https://github.com/sponsors/NoFxAiOS)
+[Become a sponsor](https://github.com/sponsors/woodyyan)
 
 ## License
 
 [AGPL-3.0](LICENSE)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=NoFxAiOS/nofx&type=Date)](https://star-history.com/#NoFxAiOS/nofx&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=woodyyan/nofx&type=Date)](https://star-history.com/#woodyyan/nofx&Date)

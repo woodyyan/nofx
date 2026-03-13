@@ -389,7 +389,7 @@ sudo apt-get install libta-lib0-dev
 ### 2. プロジェクトをクローン
 
 ```bash
-git clone https://github.com/NoFxAiOS/nofx.git
+git clone https://github.com/woodyyan/nofx.git
 cd nofx
 ```
 
@@ -1351,7 +1351,7 @@ IssueとPull Requestを歓迎します！
 
 
 ### 🐛 技術サポート
-- **GitHub Issues**: [Issueを提出](https://github.com/NoFxAiOS/nofx/issues)
+- **GitHub Issues**: [Issueを提出](https://github.com/woodyyan/nofx/issues)
 - **開発者コミュニティ**: [Telegramグループ](https://t.me/nofx_dev_community)
 
 ---
@@ -1374,4 +1374,4 @@ IssueとPull Requestを歓迎します！
 
 ## ⭐ Star履歴
 
-[![Star履歴チャート](https://api.star-history.com/svg?repos=NoFxAiOS/nofx&type=Date)](https://star-history.com/#NoFxAiOS/nofx&Date)
+[![Star履歴チャート](https://api.star-history.com/svg?repos=woodyyan/nofx&type=Date)](https://star-history.com/#woodyyan/nofx&Date)

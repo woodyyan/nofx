@@ -6,9 +6,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/NoFxAiOS/nofx/stargazers"><img src="https://img.shields.io/github/stars/NoFxAiOS/nofx?style=for-the-badge" alt="Stars"></a>
-  <a href="https://github.com/NoFxAiOS/nofx/releases"><img src="https://img.shields.io/github/v/release/NoFxAiOS/nofx?style=for-the-badge" alt="Release"></a>
-  <a href="https://github.com/NoFxAiOS/nofx/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-blue.svg?style=for-the-badge" alt="License"></a>
+  <a href="https://github.com/woodyyan/nofx/stargazers"><img src="https://img.shields.io/github/stars/woodyyan/nofx?style=for-the-badge" alt="Stars"></a>
+  <a href="https://github.com/woodyyan/nofx/releases"><img src="https://img.shields.io/github/v/release/woodyyan/nofx?style=for-the-badge" alt="Release"></a>
+  <a href="https://github.com/woodyyan/nofx/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-blue.svg?style=for-the-badge" alt="License"></a>
   <a href="https://t.me/nofx_dev_community"><img src="https://img.shields.io/badge/Telegram-Community-blue?style=for-the-badge&logo=telegram" alt="Telegram"></a>
 </p>
 
@@ -36,10 +36,85 @@ NOFX — це **автономний** AI торговий асистент з �
 
 **Повна автономність**: AI сам вирішує, яку модель використовувати, які ринкові дані отримати, коли торгувати. Без ручного налаштування моделей. Без жонглювання API ключами різних сервісів. Просто поповніть USDC гаманець і запустіть.
 
-Ключова відмінність: **вбудовані [x402](https://x402.org) мікроплатежі**. Без API ключів. Поповніть USDC гаманець і платіть за кожен запит. Гаманець — це ваша ідентифікація.
+### Офіційні посилання
+
+- **Офіційний сайт**: [https://nofxai.com](https://nofxai.com)
+- **Панель даних**: [https://nofxos.ai/dashboard](https://nofxos.ai/dashboard)
+- **Документація API**: [https://nofxos.ai/api-docs](https://nofxos.ai/api-docs)
+
+> **Попередження про ризики**: Ця система експериментальна. AI автоторгівля несе значні ризики. Наполегливо рекомендується використовувати лише для навчання/досліджень або тестування з невеликими сумами!
+
+## Спільнота розробників
+
+Приєднуйтесь до Telegram спільноти: **[NOFX Developer Community](https://t.me/nofx_dev_community)**
+
+---
+
+## Перед початком
+
+Для використання NOFX вам знадобиться:
+
+1. **Акаунт біржі** - Зареєструйтесь на підтримуваній біржі та створіть API ключі з правами торгівлі
+2. **API ключ AI моделі** - Отримайте від будь-якого підтримуваного провайдера (рекомендується DeepSeek для економії)
+
+---
+
+## Підтримувані біржі
+
+### CEX (Централізовані біржі)
+
+| Біржа | Статус | Реєстрація (знижка) |
+|----------|--------|-------------------------|
+| **Binance** | ✅ Підтримується | [Реєстрація](https://www.binance.com/join?ref=NOFXENG) |
+| **Bybit** | ✅ Підтримується | [Реєстрація](https://partner.bybit.com/b/83856) |
+| **OKX** | ✅ Підтримується | [Реєстрація](https://www.okx.com/join/1865360) |
+| **Bitget** | ✅ Підтримується | [Реєстрація](https://www.bitget.com/referral/register?from=referral&clacCode=c8a43172) |
+| **KuCoin** | ✅ Підтримується | [Реєстрація](https://www.kucoin.com/r/broker/CXEV7XKK) |
+| **Gate** | ✅ Підтримується | [Реєстрація](https://www.gatenode.xyz/share/VQBGUAxY) |
+
+### Perp-DEX (Децентралізовані біржі)
+
+| Біржа | Статус | Реєстрація (знижка) |
+|----------|--------|-------------------------|
+| **Hyperliquid** | ✅ Підтримується | [Реєстрація](https://app.hyperliquid.xyz/join/AITRADING) |
+| **Aster DEX** | ✅ Підтримується | [Реєстрація](https://www.asterdex.com/en/referral/fdfc0e) |
+| **Lighter** | ✅ Підтримується | [Реєстрація](https://app.lighter.xyz/?referral=68151432) |
+
+---
+
+## Підтримувані AI моделі
+
+| AI Модель | Статус | Отримати API ключ |
+|----------|--------|-------------|
+| **DeepSeek** | ✅ Підтримується | [Отримати](https://platform.deepseek.com) |
+| **Qwen** | ✅ Підтримується | [Отримати](https://dashscope.console.aliyun.com) |
+| **OpenAI (GPT)** | ✅ Підтримується | [Отримати](https://platform.openai.com) |
+| **Claude** | ✅ Підтримується | [Отримати](https://console.anthropic.com) |
+| **Gemini** | ✅ Підтримується | [Отримати](https://aistudio.google.com) |
+| **Grok** | ✅ Підтримується | [Отримати](https://console.x.ai) |
+| **Kimi** | ✅ Підтримується | [Отримати](https://platform.moonshot.cn) |
+
+---
+
+## Швидкий старт
+
+### Варіант 1: Docker розгортання (рекомендовано)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bash
+git clone https://github.com/woodyyan/nofx.git
+cd nofx
+chmod +x ./start.sh
+./start.sh start --build
+```
+
+Доступ до веб-інтерфейсу: **http://localhost:3000**
+
+### Оновлення до останньої версії
+
+> **💡 Оновлення виходять часто.** Запускайте цю команду щодня для отримання останніх функцій та виправлень:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
 ```
 
 Відкрийте **http://127.0.0.1:3000**. Готово.
@@ -129,7 +204,7 @@ x402 процес:
 ### Linux / macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
 ```
 
 ### Railway (Хмара)
@@ -139,7 +214,7 @@ curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bas
 ### Docker
 
 ```bash
-curl -O https://raw.githubusercontent.com/NoFxAiOS/nofx/main/docker-compose.prod.yml
+curl -O https://raw.githubusercontent.com/woodyyan/nofx/main/docker-compose.prod.yml
 docker compose -f docker-compose.prod.yml up -d
 ```
 
@@ -150,9 +225,20 @@ docker compose -f docker-compose.prod.yml up -d
 # macOS: brew install ta-lib
 # Ubuntu: sudo apt-get install libta-lib0-dev
 
-git clone https://github.com/NoFxAiOS/nofx.git && cd nofx
-go build -o nofx && ./nofx          # бекенд
-cd web && npm install && npm run dev  # фронтенд (новий термінал)
+# Встановлення TA-Lib (macOS)
+brew install ta-lib
+
+# Клонування та налаштування
+git clone https://github.com/woodyyan/nofx.git
+cd nofx
+go mod download
+cd web && npm install && cd ..
+
+# Запуск бекенду
+go build -o nofx && ./nofx
+
+# Запуск фронтенду (новий термінал)
+cd web && npm run dev
 ```
 
 ---
@@ -175,4 +261,9 @@ cd web && npm install && npm run dev  # фронтенд (новий термі�
 
 [AGPL-3.0](../../../LICENSE)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=NoFxAiOS/nofx&type=Date)](https://star-history.com/#NoFxAiOS/nofx&Date)
+---
+
+## Контакти
+
+- **GitHub Issues**: [Створити Issue](https://github.com/woodyyan/nofx/issues)
+- **Спільнота розробників**: [Telegram група](https://t.me/nofx_dev_community)

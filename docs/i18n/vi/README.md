@@ -6,9 +6,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/NoFxAiOS/nofx/stargazers"><img src="https://img.shields.io/github/stars/NoFxAiOS/nofx?style=for-the-badge" alt="Stars"></a>
-  <a href="https://github.com/NoFxAiOS/nofx/releases"><img src="https://img.shields.io/github/v/release/NoFxAiOS/nofx?style=for-the-badge" alt="Release"></a>
-  <a href="https://github.com/NoFxAiOS/nofx/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-blue.svg?style=for-the-badge" alt="License"></a>
+  <a href="https://github.com/woodyyan/nofx/stargazers"><img src="https://img.shields.io/github/stars/woodyyan/nofx?style=for-the-badge" alt="Stars"></a>
+  <a href="https://github.com/woodyyan/nofx/releases"><img src="https://img.shields.io/github/v/release/woodyyan/nofx?style=for-the-badge" alt="Release"></a>
+  <a href="https://github.com/woodyyan/nofx/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-blue.svg?style=for-the-badge" alt="License"></a>
   <a href="https://t.me/nofx_dev_community"><img src="https://img.shields.io/badge/Telegram-Community-blue?style=for-the-badge&logo=telegram" alt="Telegram"></a>
 </p>
 
@@ -36,10 +36,85 @@ NOFX là trợ lý giao dịch AI **tự chủ** mã nguồn mở. Không giốn
 
 **Hoàn toàn tự chủ**: AI tự quyết định sử dụng mô hình nào, lấy dữ liệu thị trường gì, khi nào giao dịch. Không cần cấu hình mô hình thủ công. Không cần quản lý API key của nhiều dịch vụ. Chỉ cần nạp ví USDC và chạy.
 
-Điểm khác biệt: **tích hợp thanh toán vi mô [x402](https://x402.org)**. Không cần API key. Nạp ví USDC và thanh toán theo yêu cầu. Ví chính là danh tính của bạn.
+### Liên Kết Chính Thức
+
+- **Website Chính Thức**: [https://nofxai.com](https://nofxai.com)
+- **Bảng Điều Khiển Dữ Liệu**: [https://nofxos.ai/dashboard](https://nofxos.ai/dashboard)
+- **Tài Liệu API**: [https://nofxos.ai/api-docs](https://nofxos.ai/api-docs)
+
+> **Cảnh Báo Rủi Ro**: Hệ thống này mang tính thử nghiệm. Giao dịch tự động AI có rủi ro đáng kể. Chỉ nên sử dụng cho mục đích học tập/nghiên cứu hoặc kiểm tra với số tiền nhỏ!
+
+## Cộng Đồng Nhà Phát Triển
+
+Tham gia cộng đồng Telegram: **[NOFX Developer Community](https://t.me/nofx_dev_community)**
+
+---
+
+## Trước Khi Bắt Đầu
+
+Để sử dụng NOFX, bạn cần:
+
+1. **Tài khoản sàn giao dịch** - Đăng ký trên sàn được hỗ trợ và tạo API key với quyền giao dịch
+2. **API Key mô hình AI** - Lấy từ nhà cung cấp được hỗ trợ (khuyến nghị DeepSeek để tiết kiệm chi phí)
+
+---
+
+## Sàn Giao Dịch Được Hỗ Trợ
+
+### CEX (Sàn Tập Trung)
+
+| Sàn | Trạng thái | Đăng ký (Giảm phí) |
+|----------|--------|-------------------------|
+| **Binance** | ✅ Hỗ trợ | [Đăng ký](https://www.binance.com/join?ref=NOFXENG) |
+| **Bybit** | ✅ Hỗ trợ | [Đăng ký](https://partner.bybit.com/b/83856) |
+| **OKX** | ✅ Hỗ trợ | [Đăng ký](https://www.okx.com/join/1865360) |
+| **Bitget** | ✅ Hỗ trợ | [Đăng ký](https://www.bitget.com/referral/register?from=referral&clacCode=c8a43172) |
+| **KuCoin** | ✅ Hỗ trợ | [Đăng ký](https://www.kucoin.com/r/broker/CXEV7XKK) |
+| **Gate** | ✅ Hỗ trợ | [Đăng ký](https://www.gatenode.xyz/share/VQBGUAxY) |
+
+### Perp-DEX (Sàn Phi Tập Trung)
+
+| Sàn | Trạng thái | Đăng ký (Giảm phí) |
+|----------|--------|-------------------------|
+| **Hyperliquid** | ✅ Hỗ trợ | [Đăng ký](https://app.hyperliquid.xyz/join/AITRADING) |
+| **Aster DEX** | ✅ Hỗ trợ | [Đăng ký](https://www.asterdex.com/en/referral/fdfc0e) |
+| **Lighter** | ✅ Hỗ trợ | [Đăng ký](https://app.lighter.xyz/?referral=68151432) |
+
+---
+
+## Mô Hình AI Được Hỗ Trợ
+
+| Mô hình AI | Trạng thái | Lấy API Key |
+|----------|--------|-------------|
+| **DeepSeek** | ✅ Hỗ trợ | [Lấy API Key](https://platform.deepseek.com) |
+| **Qwen** | ✅ Hỗ trợ | [Lấy API Key](https://dashscope.console.aliyun.com) |
+| **OpenAI (GPT)** | ✅ Hỗ trợ | [Lấy API Key](https://platform.openai.com) |
+| **Claude** | ✅ Hỗ trợ | [Lấy API Key](https://console.anthropic.com) |
+| **Gemini** | ✅ Hỗ trợ | [Lấy API Key](https://aistudio.google.com) |
+| **Grok** | ✅ Hỗ trợ | [Lấy API Key](https://console.x.ai) |
+| **Kimi** | ✅ Hỗ trợ | [Lấy API Key](https://platform.moonshot.cn) |
+
+---
+
+## Bắt Đầu Nhanh
+
+### Tùy chọn 1: Triển khai Docker (Khuyến nghị)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bash
+git clone https://github.com/woodyyan/nofx.git
+cd nofx
+chmod +x ./start.sh
+./start.sh start --build
+```
+
+Truy cập giao diện Web: **http://localhost:3000**
+
+### Cập Nhật Phiên Bản Mới
+
+> **💡 Cập nhật thường xuyên.** Chạy lệnh này hàng ngày để nhận các tính năng và bản sửa lỗi mới nhất:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
 ```
 
 Mở **http://127.0.0.1:3000**. Xong.
@@ -128,7 +203,7 @@ Crypto · Cổ phiếu Mỹ · Forex · Kim loại
 ### Linux / macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/main/install.sh | bash
 ```
 
 ### Railway (Cloud)
@@ -138,7 +213,7 @@ curl -fsSL https://raw.githubusercontent.com/NoFxAiOS/nofx/main/install.sh | bas
 ### Docker
 
 ```bash
-curl -O https://raw.githubusercontent.com/NoFxAiOS/nofx/main/docker-compose.prod.yml
+curl -O https://raw.githubusercontent.com/woodyyan/nofx/main/docker-compose.prod.yml
 docker compose -f docker-compose.prod.yml up -d
 ```
 
@@ -149,9 +224,20 @@ docker compose -f docker-compose.prod.yml up -d
 # macOS: brew install ta-lib
 # Ubuntu: sudo apt-get install libta-lib0-dev
 
-git clone https://github.com/NoFxAiOS/nofx.git && cd nofx
-go build -o nofx && ./nofx          # backend
-cd web && npm install && npm run dev  # frontend (terminal mới)
+# Cài đặt TA-Lib (macOS)
+brew install ta-lib
+
+# Clone và thiết lập
+git clone https://github.com/woodyyan/nofx.git
+cd nofx
+go mod download
+cd web && npm install && cd ..
+
+# Khởi động backend
+go build -o nofx && ./nofx
+
+# Khởi động frontend (terminal mới)
+cd web && npm run dev
 ```
 
 ---
@@ -174,4 +260,15 @@ cd web && npm install && npm run dev  # frontend (terminal mới)
 
 [AGPL-3.0](../../../LICENSE)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=NoFxAiOS/nofx&type=Date)](https://star-history.com/#NoFxAiOS/nofx&Date)
+---
+
+## Giấy Phép
+
+**GNU Affero General Public License v3.0 (AGPL-3.0)**
+
+---
+
+## Liên Hệ
+
+- **GitHub Issues**: [Gửi Issue](https://github.com/woodyyan/nofx/issues)
+- **Cộng đồng Nhà phát triển**: [Nhóm Telegram](https://t.me/nofx_dev_community)

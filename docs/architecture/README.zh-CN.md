@@ -141,10 +141,10 @@ nofx/
 
 **想要贡献？**
 - 阅读上方的模块文档
-- 查看 [Open Issues](https://github.com/NoFxAiOS/nofx/issues)
+- 查看 [Open Issues](https://github.com/woodyyan/nofx/issues)
 - 加入我们的社区
 
-**代码仓库:** https://github.com/NoFxAiOS/nofx
+**代码仓库:** https://github.com/woodyyan/nofx
 
 ---
 

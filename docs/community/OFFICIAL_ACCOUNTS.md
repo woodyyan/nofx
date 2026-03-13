@@ -16,7 +16,7 @@
 |----------|-----------------|------|--------|
 | Twitter/X | **@nofx_official** | https://x.com/nofx_official | ✅ Official |
 | Twitter/X | **@Web3Tinkle** | https://x.com/Web3Tinkle | ✅ Founder |
-| GitHub | **NoFxAiOS** | https://github.com/NoFxAiOS | ✅ Official |
+| GitHub | **woodyyan** | https://github.com/woodyyan | ✅ Official |
 | Website | **nofxai.com** | https://nofxai.com | ✅ Official |
 | Dashboard | **nofxos.ai** | https://nofxos.ai | ✅ Official |
 
