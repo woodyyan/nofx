@@ -41,6 +41,10 @@ type CreateTraderRequest struct {
 	SystemPromptTemplate string `json:"system_prompt_template"` // System prompt template name
 	UseAI500             bool   `json:"use_ai500"`
 	UseOITop             bool   `json:"use_oi_top"`
+	// Webhook notification configuration
+	WebhookURL     string `json:"webhook_url"`
+	WebhookSecret  string `json:"webhook_secret"`
+	WebhookEnabled *bool  `json:"webhook_enabled"`
 }
 
 // UpdateTraderRequest Update trader request
@@ -60,6 +64,10 @@ type UpdateTraderRequest struct {
 	CustomPrompt         string `json:"custom_prompt"`
 	OverrideBasePrompt   bool   `json:"override_base_prompt"`
 	SystemPromptTemplate string `json:"system_prompt_template"`
+	// Webhook notification configuration
+	WebhookURL     string `json:"webhook_url"`
+	WebhookSecret  string `json:"webhook_secret"`
+	WebhookEnabled *bool  `json:"webhook_enabled"`
 }
 
 // handleCreateTrader Create new AI trader
@@ -268,6 +276,9 @@ func (s *Server) handleCreateTrader(c *gin.Context) {
 		ShowInCompetition:    showInCompetition,
 		ScanIntervalMinutes:  scanIntervalMinutes,
 		IsRunning:            false,
+		WebhookURL:           req.WebhookURL,
+		WebhookSecret:        req.WebhookSecret,
+		WebhookEnabled:       req.WebhookEnabled != nil && *req.WebhookEnabled,
 	}
 
 	// Save to database
@@ -392,6 +403,14 @@ func (s *Server) handleUpdateTrader(c *gin.Context) {
 		ShowInCompetition:    showInCompetition,
 		ScanIntervalMinutes:  scanIntervalMinutes,
 		IsRunning:            existingTrader.IsRunning, // Keep original value
+		WebhookURL:           req.WebhookURL,
+		WebhookSecret:        req.WebhookSecret,
+		WebhookEnabled: func() bool {
+			if req.WebhookEnabled != nil {
+				return *req.WebhookEnabled
+			}
+			return existingTrader.WebhookEnabled
+		}(),
 	}
 
 	// Check if trader was running before update (we'll restart it after)
