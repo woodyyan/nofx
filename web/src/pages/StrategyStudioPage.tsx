@@ -38,6 +38,7 @@ import { RiskControlEditor } from '../components/strategy/RiskControlEditor'
 import { PromptSectionsEditor } from '../components/strategy/PromptSectionsEditor'
 import { PublishSettingsEditor } from '../components/strategy/PublishSettingsEditor'
 import { GridConfigEditor, defaultGridConfig } from '../components/strategy/GridConfigEditor'
+import { TokenEstimateBar } from '../components/strategy/TokenEstimateBar'
 import { DeepVoidBackground } from '../components/common/DeepVoidBackground'
 import { t } from '../i18n/translations'
 
@@ -52,6 +53,7 @@ export function StrategyStudioPage() {
   const [editingConfig, setEditingConfig] = useState<StrategyConfig | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
+  const [estimatedTokens, setEstimatedTokens] = useState(0)
   const [error, setError] = useState<string | null>(null)
   const [hasChanges, setHasChanges] = useState(false)
 
@@ -201,6 +203,7 @@ export function StrategyStudioPage() {
         `${API_BASE}/api/strategies/default-config?lang=${language}`,
         { headers: { Authorization: `Bearer ${token}` } }
       )
+      if (!configResponse.ok) throw new Error('Failed to fetch default config')
       const defaultConfig = await configResponse.json()
 
       const response = await fetch(`${API_BASE}/api/strategies`, {
@@ -246,6 +249,24 @@ export function StrategyStudioPage() {
   const handleDeleteStrategy = async (id: string) => {
     if (!token) return
 
+    // Check if strategy is in use by any trader before showing dialog
+    try {
+      const tradersResp = await fetch(`${API_BASE}/api/my-traders`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      if (tradersResp.ok) {
+        const traderList = await tradersResp.json()
+        const using = traderList.filter((t: any) => t.strategy_id === id)
+        if (using.length > 0) {
+          const names = using.map((t: any) => t.trader_name).join(', ')
+          notify.error(`Strategy is in use by: ${names}`)
+          return
+        }
+      }
+    } catch {
+      // fetch failed — proceed, backend will guard
+    }
+
     const confirmed = await confirmToast(
       tr('confirmDeleteStrategy'),
       {
@@ -261,9 +282,12 @@ export function StrategyStudioPage() {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       })
-      if (!response.ok) throw new Error('Failed to delete strategy')
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}))
+        notify.error(data.error || 'Failed to delete strategy')
+        return
+      }
       notify.success(tr('strategyDeleted'))
-      // Clear selection if deleted strategy was selected
       if (selectedStrategy?.id === id) {
         setSelectedStrategy(null)
         setEditingConfig(null)
@@ -271,9 +295,7 @@ export function StrategyStudioPage() {
       }
       await fetchStrategies()
     } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : 'Unknown error'
-      setError(errorMsg)
-      notify.error(errorMsg)
+      notify.error(err instanceof Error ? err.message : 'Unknown error')
     }
   }
 
@@ -377,6 +399,10 @@ export function StrategyStudioPage() {
   // Save strategy
   const handleSaveStrategy = async () => {
     if (!token || !selectedStrategy || !editingConfig) return
+    if (estimatedTokens >= 128000 && currentStrategyType === 'ai_trading') {
+      notify.warning(tr('tokenExceedWarning'))
+      // continue with save
+    }
     setIsSaving(true)
     try {
       // Always sync the config language with the current interface language
@@ -680,7 +706,7 @@ export function StrategyStudioPage() {
                 </button>
               </div>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-2">
               {strategies.map((strategy) => (
                 <div
                   key={strategy.id}
@@ -693,11 +719,11 @@ export function StrategyStudioPage() {
                   }}
                   className={`group px-2 py-2 rounded-lg cursor-pointer transition-all ${selectedStrategy?.id === strategy.id
                     ? 'ring-1 ring-nofx-gold/50 bg-nofx-gold/10 shadow-[0_0_15px_rgba(240,185,11,0.1)]'
-                    : 'hover:bg-nofx-bg-lighter/60 hover:ring-1 hover:ring-nofx-gold/20 bg-transparent'
+                    : 'hover:bg-nofx-bg-lighter/60 ring-1 ring-white/10 hover:ring-nofx-gold/20 bg-transparent'
                     }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm truncate text-nofx-text">{strategy.name}</span>
+                  <div className="flex items-start justify-between">
+                    <span className={`line-clamp-2 text-nofx-text ${language === 'zh' ? 'text-sm' : 'text-xs'}`}>{strategy.name}</span>
                     <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button
                         onClick={(e) => { e.stopPropagation(); handleExportStrategy(strategy) }}
@@ -805,6 +831,13 @@ export function StrategyStudioPage() {
                   )}
                 </div>
               </div>
+
+              {/* Token Estimate Bar */}
+              {currentStrategyType === 'ai_trading' && (
+                <div className="mb-4">
+                  <TokenEstimateBar config={editingConfig} language={language} onTokenCountChange={setEstimatedTokens} />
+                </div>
+              )}
 
               {/* Strategy Type Selector */}
               {editingConfig && (

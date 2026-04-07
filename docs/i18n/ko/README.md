@@ -17,7 +17,6 @@
   <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-18+-61DAFB?style=flat&logo=react" alt="React"></a>
   <a href="https://x402.org"><img src="https://img.shields.io/badge/x402-USDC%20Payments-2775CA?style=flat" alt="x402"></a>
   <a href="https://claw402.ai"><img src="https://img.shields.io/badge/Claw402-AI%20Gateway-FF6B35?style=flat" alt="Claw402"></a>
-  <a href="https://blockrun.ai"><img src="https://img.shields.io/badge/BlockRun-x402%20Provider-8B5CF6?style=flat" alt="BlockRun"></a>
 </p>
 
 <p align="center">
@@ -138,10 +137,6 @@ x402 플로우:
 | 프로바이더 | 체인 | 모델 |
 |:---------|:------|:-------|
 | <img src="../../../web/public/icons/claw402.png" width="20" height="20" style="vertical-align: middle;"/> **[Claw402](https://claw402.ai)** | Base | GPT-5.4, Claude Opus, DeepSeek, Qwen, Grok, Gemini, Kimi — 15+ 모델 |
-| **[BlockRun](https://blockrun.ai)** | Base | 설정 가능 |
-| **[BlockRun Sol](https://sol.blockrun.ai)** | Solana | 설정 가능 |
-
-**[ClawRouter](https://github.com/BlockRunAI/ClawRouter)** 호환 — 요청마다 최저가 모델을 자동 선택하는 지능형 LLM 라우터 (41+ 모델, 74-100% 절감, <1ms 라우팅).
 
 ---
 
@@ -149,7 +144,7 @@ x402 플로우:
 
 | 기능 | 설명 |
 |:--------|:------------|
-| **멀티 AI** | DeepSeek, Qwen, GPT, Claude, Gemini, Grok, Kimi — 언제든 전환 |
+| **멀티 AI** | DeepSeek, Qwen, GPT, Claude, Gemini, Grok, Kimi, MiniMax — 언제든 전환 |
 | **멀티 거래소** | Binance, Bybit, OKX, Bitget, KuCoin, Gate, Hyperliquid, Aster, Lighter |
 | **전략 스튜디오** | 비주얼 빌더 — 코인 소스, 지표, 리스크 관리 |
 | **AI 토론 아레나** | 여러 AI가 거래 토론 (강세 vs 약세 vs 분석가), 투표, 실행 |
@@ -192,10 +187,11 @@ x402 플로우:
 | <img src="../../../web/public/icons/gemini.svg" width="20" height="20" style="vertical-align: middle;"/> **Gemini** | ✅ | [API 키 받기](https://aistudio.google.com) |
 | <img src="../../../web/public/icons/grok.svg" width="20" height="20" style="vertical-align: middle;"/> **Grok** | ✅ | [API 키 받기](https://console.x.ai) |
 | <img src="../../../web/public/icons/kimi.svg" width="20" height="20" style="vertical-align: middle;"/> **Kimi** | ✅ | [API 키 받기](https://platform.moonshot.cn) |
+| <img src="../../../web/public/icons/minimax.svg" width="20" height="20" style="vertical-align: middle;"/> **MiniMax** | ✅ | [API 키 받기](https://platform.minimaxi.com) |
 
 ### AI 모델 (x402 모드 — API 키 불필요)
 
-15+ 모델을 [Claw402](https://claw402.ai) 또는 [BlockRun](https://blockrun.ai)으로 이용 — USDC 지갑만 있으면 됩니다
+15+ 모델을 [Claw402](https://claw402.ai)로 이용 — USDC 지갑만 있으면 됩니다
 
 ---
 

@@ -17,7 +17,6 @@
   <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-18+-61DAFB?style=flat&logo=react" alt="React"></a>
   <a href="https://x402.org"><img src="https://img.shields.io/badge/x402-USDC%20Payments-2775CA?style=flat" alt="x402"></a>
   <a href="https://claw402.ai"><img src="https://img.shields.io/badge/Claw402-AI%20Gateway-FF6B35?style=flat" alt="Claw402"></a>
-  <a href="https://blockrun.ai"><img src="https://img.shields.io/badge/BlockRun-x402%20Provider-8B5CF6?style=flat" alt="BlockRun"></a>
 </p>
 
 <p align="center">
@@ -63,10 +62,6 @@ No accounts. No API keys. No prepaid credits. One wallet, every model.
 | Provider | Chain | Models |
 |:---------|:------|:-------|
 | <img src="web/public/icons/claw402.png" width="20" height="20" style="vertical-align: middle;"/> **[Claw402](https://claw402.ai)** | Base | GPT-5.4, Claude Opus, DeepSeek, Qwen, Grok, Gemini, Kimi — 15+ models |
-| **[BlockRun](https://blockrun.ai)** | Base | Configurable |
-| **[BlockRun Sol](https://sol.blockrun.ai)** | Solana | Configurable |
-
-Also compatible with **[ClawRouter](https://github.com/BlockRunAI/ClawRouter)** — an intelligent LLM router that picks the cheapest capable model per request (41+ models, 74-100% savings, <1ms routing).
 
 ---
 
@@ -74,12 +69,11 @@ Also compatible with **[ClawRouter](https://github.com/BlockRunAI/ClawRouter)** 
 
 | Feature | Description |
 |:--------|:------------|
-| **Multi-AI** | DeepSeek, Qwen, GPT, Claude, Gemini, Grok, Kimi — switch anytime |
+| **Multi-AI** | DeepSeek, Qwen, GPT, Claude, Gemini, Grok, Kimi, MiniMax — switch anytime |
 | **Multi-Exchange** | Binance, Bybit, OKX, Bitget, KuCoin, Gate, Hyperliquid, Aster, Lighter |
 | **Strategy Studio** | Visual builder — coin sources, indicators, risk controls |
 | **AI Competition** | AIs compete in real-time, leaderboard ranks performance |
 | **Telegram Agent** | Chat with your trading assistant — streaming, tool calling, memory |
-| **Backtest Lab** | Historical simulation with equity curves and performance metrics |
 | **Dashboard** | Live positions, P/L, AI decision logs with Chain of Thought |
 
 ### Markets
@@ -116,10 +110,11 @@ Crypto · US Stocks · Forex · Metals
 | <img src="web/public/icons/gemini.svg" width="20" height="20" style="vertical-align: middle;"/> **Gemini** | ✅ | [Get API Key](https://aistudio.google.com) |
 | <img src="web/public/icons/grok.svg" width="20" height="20" style="vertical-align: middle;"/> **Grok** | ✅ | [Get API Key](https://console.x.ai) |
 | <img src="web/public/icons/kimi.svg" width="20" height="20" style="vertical-align: middle;"/> **Kimi** | ✅ | [Get API Key](https://platform.moonshot.cn) |
+| <img src="web/public/icons/minimax.svg" width="20" height="20" style="vertical-align: middle;"/> **MiniMax** | ✅ | [Get API Key](https://platform.minimaxi.com) |
 
 ### AI Models (x402 Mode — No API Key)
 
-15+ models via [Claw402](https://claw402.ai) or [BlockRun](https://blockrun.ai) — just a USDC wallet
+15+ models via [Claw402](https://claw402.ai) — just a USDC wallet
 
 ---
 
@@ -158,11 +153,11 @@ Crypto · US Stocks · Forex · Metals
 </details>
 
 <details>
-<summary><b>Competition & Backtest</b></summary>
+<summary><b>Competition</b></summary>
 
-| Competition Mode | Backtest Lab |
-|:---:|:---:|
-| <img src="screenshots/competition-page.png" width="400"/> | <img src="screenshots/backtest-lab.png" width="400"/> |
+| Competition Mode |
+|:---:|
+| <img src="screenshots/competition-page.png" width="400"/> |
 </details>
 
 ---
@@ -217,6 +212,10 @@ curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 ---
 
 ## Setup
+
+**Beginner mode**: First-time users get a guided onboarding flow — select beginner mode at registration and the system walks you through AI, exchange, and strategy setup step by step.
+
+**Advanced mode**:
 
 1. **AI** — Add API keys or configure x402 wallet
 2. **Exchange** — Connect exchange API credentials
@@ -376,14 +375,14 @@ curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
     ├─────────────────────────────────────────────────┤
     │                  API Server (Go)                  │
     ├──────────┬──────────┬──────────┬────────────────┤
-    │ Strategy │ Backtest │    Telegram     │
-    │  Engine  │   Lab    │     Agent       │
+    │  Strategy  │      Telegram       │
+    │   Engine   │       Agent         │
     ├──────────┴──────────┴──────────┴────────────────┤
     │               MCP AI Client Layer                │
     │    ┌───────────┐  ┌───────────┐  ┌───────────┐  │
-    │    │  API Key   │  │   x402    │  │ ClawRouter│  │
-    │    │ DeepSeek   │  │ Claw402   │  │ 41+ models│  │
-    │    │ GPT,Claude │  │ BlockRun  │  │ auto-route│  │
+    │    │  API Key   │  │   x402    │  │           │  │
+    │    │ DeepSeek   │  │ Claw402   │  │           │  │
+    │    │ GPT,Claude │  │           │  │           │  │
     │    └───────────┘  └───────────┘  └───────────┘  │
     ├─────────────────────────────────────────────────┤
     │             Exchange Connectors                   │
@@ -400,7 +399,6 @@ curl -fsSL https://raw.githubusercontent.com/woodyyan/nofx/dev/install.sh | bash
 |:--|:--|
 | [Architecture](docs/architecture/README.md) | System design and module index |
 | [Strategy Module](docs/architecture/STRATEGY_MODULE.md) | Coin selection, AI prompts, execution |
-| [Backtest Module](docs/architecture/BACKTEST_MODULE.md) | Historical simulation, metrics |
 | [FAQ](docs/faq/README.md) | Common questions |
 | [Getting Started](docs/getting-started/README.md) | Deployment guide |
 

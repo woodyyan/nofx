@@ -6,7 +6,6 @@ import (
 	"net"
 	"net/http"
 	"nofx/auth"
-	"nofx/backtest"
 	"nofx/crypto"
 	"nofx/logger"
 	"nofx/manager"
@@ -19,18 +18,18 @@ import (
 
 // Server HTTP API server
 type Server struct {
-	router           *gin.Engine
-	traderManager    *manager.TraderManager
-	store            *store.Store
-	cryptoHandler    *CryptoHandler
-	backtestManager  *backtest.Manager
-	httpServer       *http.Server
-	port             int
-	telegramReloadCh chan<- struct{} // signal Telegram bot to reload
+	router                    *gin.Engine
+	traderManager             *manager.TraderManager
+	store                     *store.Store
+	cryptoHandler             *CryptoHandler
+	exchangeAccountStateCache *ExchangeAccountStateCache
+	httpServer                *http.Server
+	port                      int
+	telegramReloadCh          chan<- struct{} // signal Telegram bot to reload
 }
 
 // NewServer Creates API server
-func NewServer(traderManager *manager.TraderManager, st *store.Store, cryptoService *crypto.CryptoService, backtestManager *backtest.Manager, port int) *Server {
+func NewServer(traderManager *manager.TraderManager, st *store.Store, cryptoService *crypto.CryptoService, port int) *Server {
 	// Set to Release mode (reduce log output)
 	gin.SetMode(gin.ReleaseMode)
 
@@ -43,12 +42,12 @@ func NewServer(traderManager *manager.TraderManager, st *store.Store, cryptoServ
 	cryptoHandler := NewCryptoHandler(cryptoService)
 
 	s := &Server{
-		router:          router,
-		traderManager:   traderManager,
-		store:           st,
-		cryptoHandler:   cryptoHandler,
-		backtestManager: backtestManager,
-		port:            port,
+		router:                    router,
+		traderManager:             traderManager,
+		store:                     st,
+		cryptoHandler:             cryptoHandler,
+		exchangeAccountStateCache: NewExchangeAccountStateCache(),
+		port:                      port,
 	}
 
 	// Setup routes
@@ -90,6 +89,10 @@ func (s *Server) setupRoutes() {
 		// System config (no authentication required, for frontend to determine admin mode/registration status)
 		s.route(api, "GET", "/config", "Get system configuration", s.handleGetSystemConfig)
 
+		// Wallet validation (no authentication required — used by frontend config form)
+		api.POST("/wallet/validate", s.handleWalletValidate)
+		api.POST("/wallet/generate", s.handleWalletGenerate)
+
 		// Crypto related endpoints (no authentication required, not exposed to bot)
 		api.GET("/crypto/config", s.cryptoHandler.HandleGetCryptoConfig)
 		api.GET("/crypto/public-key", s.cryptoHandler.HandleGetPublicKey)
@@ -109,6 +112,7 @@ func (s *Server) setupRoutes() {
 
 		// Public strategy market (no authentication required)
 		s.route(api, "GET", "/strategies/public", "Public strategy market", s.handlePublicStrategies)
+		s.route(api, "POST", "/strategies/estimate-tokens", "Estimate token usage for a strategy config", s.handleEstimateTokens)
 
 		// Authentication related routes (no authentication required)
 		s.route(api, "POST", "/register", "Register new user", s.handleRegister)
@@ -120,6 +124,8 @@ func (s *Server) setupRoutes() {
 		{
 			// Logout (add to blacklist)
 			s.route(protected, "POST", "/logout", "Logout (blacklist token)", s.handleLogout)
+			s.route(protected, "POST", "/onboarding/beginner", "Prepare beginner claw402 wallet and default model", s.handleBeginnerOnboarding)
+			s.route(protected, "GET", "/onboarding/beginner/current", "Get current beginner claw402 wallet", s.handleCurrentBeginnerWallet)
 
 			// User account management
 			s.routeWithSchema(protected, "PUT", "/user/password", "Change current user password",
@@ -173,6 +179,10 @@ Body: {"show_in_competition":<bool>}`,
 				`:id = trader_id from GET /api/my-traders.`,
 				s.handleGetGridRiskInfo)
 
+			// AI cost tracking
+			s.route(protected, "GET", "/ai-costs", "Get AI call costs for a trader (?trader_id=xxx&period=today)", s.handleGetAICosts)
+			s.route(protected, "GET", "/ai-costs/summary", "Get AI cost summary (?period=today)", s.handleGetAICostsSummary)
+
 			// AI model configuration
 			s.routeWithSchema(protected, "GET", "/models", "List AI model configs",
 				`Returns: [{"id":"<EXACT id — use this as ai_model_id when creating/updating a trader>","name":"<display name>","provider":"<short provider name — NOT a valid id>","enabled":<bool>}]
@@ -189,6 +199,10 @@ Defaults when custom fields empty: openai→api.openai.com/v1, deepseek→api.de
 				`Returns: [{"id":"<EXACT id — use this as exchange_id when creating/updating a trader>","exchange_type":"<e.g. okx, binance>","account_name":"<user label>","enabled":<bool>}]
 CRITICAL: Always use the "id" field for exchange_id. Do not use "exchange_type" as an id.`,
 				s.handleGetExchangeConfigs)
+			s.routeWithSchema(protected, "GET", "/exchanges/account-state", "Get connection and balance state for each exchange account",
+				`Returns: {"states":{"<exchange_id>":{"status":"ok|disabled|missing_credentials|invalid_credentials|permission_denied|unavailable","display_balance":"<string>","total_equity":<number>,"available_balance":<number>,"asset":"USDT|USDC","checked_at":"<RFC3339>","error_code":"<string>","error_message":"<string>"}}}
+Use this endpoint to show balance and health in the exchange list without depending on traders.`,
+				s.handleGetExchangeAccountStates)
 			s.routeWithSchema(protected, "POST", "/exchanges", "Create a new exchange account",
 				`Body: {"exchange_type":"<string>","account_name":"<string, user label>","enabled":true,"api_key":"<string>","secret_key":"<string>","passphrase":"<string, required for okx/gate/kucoin>"}
 exchange_type values: "binance","bybit","okx","bitget","gate","kucoin","indodax" (CEX) | "hyperliquid","aster","lighter" (DEX)
@@ -342,9 +356,6 @@ Returns the most recent AI decision for each symbol analyzed in the last scan cy
 Returns: {"total_trades":<int>,"winning_trades":<int>,"win_rate":<float>,"total_pnl":<float>,"sharpe_ratio":<float>,"max_drawdown":<float>}`,
 				s.handleStatistics)
 
-			// Backtest routes
-			backtest := protected.Group("/backtest")
-			s.registerBacktestRoutes(backtest)
 		}
 	}
 }

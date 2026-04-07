@@ -17,7 +17,6 @@
   <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-18+-61DAFB?style=flat&logo=react" alt="React"></a>
   <a href="https://x402.org"><img src="https://img.shields.io/badge/x402-USDC%20Payments-2775CA?style=flat" alt="x402"></a>
   <a href="https://claw402.ai"><img src="https://img.shields.io/badge/Claw402-AI%20Gateway-FF6B35?style=flat" alt="Claw402"></a>
-  <a href="https://blockrun.ai"><img src="https://img.shields.io/badge/BlockRun-x402%20Provider-8B5CF6?style=flat" alt="BlockRun"></a>
 </p>
 
 <p align="center">
@@ -65,10 +64,6 @@ x402 流程：
 | 提供商 | 链 | 模型 |
 |:---------|:------|:-------|
 | <img src="../../../web/public/icons/claw402.png" width="20" height="20" style="vertical-align: middle;"/> **[Claw402](https://claw402.ai)** | Base | GPT-5.4、Claude Opus、DeepSeek、Qwen、Grok、Gemini、Kimi — 15+ 模型 |
-| **[BlockRun](https://blockrun.ai)** | Base | 可配置 |
-| **[BlockRun Sol](https://sol.blockrun.ai)** | Solana | 可配置 |
-
-同时兼容 **[ClawRouter](https://github.com/BlockRunAI/ClawRouter)** —— 智能 LLM 路由，自动选择每次请求最便宜的模型（41+ 模型，节省 74-100%，<1ms 路由）。
 
 ---
 
@@ -76,7 +71,7 @@ x402 流程：
 
 | 功能 | 描述 |
 |:--------|:------------|
-| **多 AI** | DeepSeek、Qwen、GPT、Claude、Gemini、Grok、Kimi — 随时切换 |
+| **多 AI** | DeepSeek、Qwen、GPT、Claude、Gemini、Grok、Kimi、MiniMax — 随时切换 |
 | **多交易所** | Binance、Bybit、OKX、Bitget、KuCoin、Gate、Hyperliquid、Aster、Lighter |
 | **策略工作室** | 可视化构建器 — 币种来源、指标、风控 |
 | **AI 竞赛** | AI 实时竞争，排行榜排名 |
@@ -118,10 +113,11 @@ x402 流程：
 | <img src="../../../web/public/icons/gemini.svg" width="20" height="20" style="vertical-align: middle;"/> **Gemini** | ✅ | [获取 API Key](https://aistudio.google.com) |
 | <img src="../../../web/public/icons/grok.svg" width="20" height="20" style="vertical-align: middle;"/> **Grok** | ✅ | [获取 API Key](https://console.x.ai) |
 | <img src="../../../web/public/icons/kimi.svg" width="20" height="20" style="vertical-align: middle;"/> **Kimi** | ✅ | [获取 API Key](https://platform.moonshot.cn) |
+| <img src="../../../web/public/icons/minimax.svg" width="20" height="20" style="vertical-align: middle;"/> **MiniMax** | ✅ | [获取 API Key](https://platform.minimaxi.com) |
 
 ### AI 模型 (x402 模式 — 无需 API Key)
 
-15+ 模型通过 [Claw402](https://claw402.ai) 或 [BlockRun](https://blockrun.ai) 接入 — 只需一个 USDC 钱包
+15+ 模型通过 [Claw402](https://claw402.ai) 接入 — 只需一个 USDC 钱包
 
 ---
 
@@ -220,6 +216,10 @@ npm run dev
 ---
 
 ## 配置
+
+**新手模式**：首次使用的用户可以在注册时选择新手模式，系统会引导你逐步完成 AI、交易所和策略的配置。
+
+**进阶模式**：
 
 1. **AI** — 添加 API Key 或配置 x402 钱包
 2. **交易所** — 连接交易所 API 凭证
@@ -422,7 +422,6 @@ sudo apt-get install libta-lib0-dev
 |:--|:--|
 | [架构概览](../../architecture/README.md) | 系统设计和模块索引 |
 | [策略模块](../../architecture/STRATEGY_MODULE.md) | 币种选择、AI 提示词、执行 |
-| [回测模块](../../architecture/BACKTEST_MODULE.md) | 历史模拟、指标计算 |
 | [常见问题](../../faq/README.md) | FAQ |
 | [快速开始](../../getting-started/README.md) | 部署指南 |
 
